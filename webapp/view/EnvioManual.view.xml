@@ -91,14 +91,7 @@
                     showIcon="true"/>
 
                 <VBox class="sapUiSmallMargin">
-                    <Text text="{
-                        parts: [
-                            { path: 'viewModel>/result/CorrelationId' }
-                        ],
-                        formatter: function(v) {
-                            return v ? 'Correlation ID: ' + v : '';
-                        }
-                    }"/>
+                    <Text text="{= ${viewModel>/result/CorrelationId} ? 'Correlation ID: ' + ${viewModel>/result/CorrelationId} : '' }"/>
                 </VBox>
             </Panel>
         </content>
