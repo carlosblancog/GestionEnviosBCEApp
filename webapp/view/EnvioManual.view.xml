@@ -1,0 +1,106 @@
+<mvc:View
+    controllerName="zbce.envios.controller.EnvioManual"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form">
+
+    <Page title="{i18n>titleEnvioManual}" showNavButton="true" navButtonPress=".onNavBack">
+
+        <content>
+            <!-- PASO 1: Parametros -->
+            <Panel headerText="{i18n>panelParametros}" expandable="false">
+                <f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                    <f:content>
+                        <Label text="{i18n>lblFecha}" required="true"/>
+                        <DatePicker
+                            id="dpFecha"
+                            valueFormat="yyyyMMdd"
+                            displayFormat="dd/MM/yyyy"
+                            placeholder="{i18n>lblFecha}"/>
+
+                        <Label text="{i18n>lblTipo}" required="true"/>
+                        <Select id="selTipo">
+                            <core:Item xmlns:core="sap.ui.core" key="U" text="U — Urgente"/>
+                            <core:Item xmlns:core="sap.ui.core" key="B" text="B — Batch"/>
+                        </Select>
+                    </f:content>
+                </f:SimpleForm>
+                <Toolbar>
+                    <ToolbarSpacer/>
+                    <Button
+                        text="{i18n>btnPrevisualizar}"
+                        type="Default"
+                        press=".onPrevisualizar"
+                        enabled="{viewModel>/previewEnabled}"/>
+                </Toolbar>
+            </Panel>
+
+            <!-- PASO 2: Preview (oculto hasta cargar datos) -->
+            <Panel
+                id="panelPreview"
+                headerText="{i18n>panelPreview}"
+                visible="{viewModel>/previewVisible}">
+
+                <Table
+                    id="tablaPreview"
+                    items="{viewModel>/previewData}"
+                    noDataText="{i18n>noPreviewData}">
+                    <columns>
+                        <Column><Text text="{i18n>colEpigrafe}"/></Column>
+                        <Column><Text text="{i18n>colParentLvl1}"/></Column>
+                        <Column><Text text="{i18n>colParentLvl2}"/></Column>
+                        <Column hAlign="End"><Text text="{i18n>colBalance}"/></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{viewModel>Epigrafe}"/>
+                                <Text text="{viewModel>ParentLvl1}"/>
+                                <Text text="{viewModel>ParentLvl2}"/>
+                                <Text text="{
+                                    path: 'viewModel>Balance',
+                                    type: 'sap.ui.model.type.Float',
+                                    formatOptions: { decimals: 2, groupingEnabled: true }
+                                }"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+                <Toolbar>
+                    <ToolbarSpacer/>
+                    <Button
+                        text="{i18n>btnConfirmarEnvio}"
+                        type="Emphasized"
+                        icon="sap-icon://paper-plane"
+                        press=".onConfirmarEnvio"
+                        enabled="{viewModel>/confirmEnabled}"/>
+                </Toolbar>
+            </Panel>
+
+            <!-- PASO 3: Resultado (oculto hasta completar envio) -->
+            <Panel
+                id="panelResultado"
+                headerText="{i18n>panelResultado}"
+                visible="{viewModel>/resultVisible}">
+
+                <MessageStrip
+                    text="{viewModel>/resultMsg}"
+                    type="{viewModel>/resultType}"
+                    showIcon="true"/>
+
+                <VBox class="sapUiSmallMargin">
+                    <Text text="{
+                        parts: [
+                            { path: 'viewModel>/result/CorrelationId' }
+                        ],
+                        formatter: function(v) {
+                            return v ? 'Correlation ID: ' + v : '';
+                        }
+                    }"/>
+                </VBox>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>
