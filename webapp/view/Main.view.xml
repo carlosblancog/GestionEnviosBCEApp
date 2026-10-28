@@ -57,12 +57,10 @@
                 backgroundDesign="Transparent"
                 class="sapUiNoContentPadding">
                 <items>
-                    <IconTabFilter id="tabTodos" key="all" text="{i18n>filtroTodos}"    showAll="true"/>
-                    <IconTabFilter id="tabC"     key="C"   text="{i18n>filtroEstadoC}"  iconColor="Positive"    icon="sap-icon://status-positive"/>
-                    <IconTabFilter id="tabW"     key="W"   text="{i18n>filtroEstadoW}"  iconColor="Critical"    icon="sap-icon://status-critical"/>
-                    <IconTabFilter id="tabR"     key="R"   text="{i18n>filtroEstadoR}"  iconColor="Negative"    icon="sap-icon://status-negative"/>
-                    <IconTabFilter id="tabF"     key="F"   text="{i18n>filtroEstadoF}"  iconColor="Negative"    icon="sap-icon://disconnected"/>
-                    <IconTabFilter id="tabE"     key="E"   text="{i18n>filtroEstadoE}"  iconColor="Default"     icon="sap-icon://status-in-process"/>
+                    <IconTabFilter id="tabTodos" key="all" text="{i18n>filtroTodos}"   showAll="true"/>
+                    <IconTabFilter id="tabOK"    key="OK"  text="{i18n>filtroEstadoOK}" iconColor="Positive" icon="sap-icon://status-positive"/>
+                    <IconTabFilter id="tabKO"    key="KO"  text="{i18n>filtroEstadoKO}" iconColor="Negative" icon="sap-icon://status-negative"/>
+                    <IconTabFilter id="tabSin"   key="SIN" text="{i18n>filtroEstadoSin}" iconColor="Default" icon="sap-icon://status-inactive"/>
                 </items>
                 <content>
                     <Table

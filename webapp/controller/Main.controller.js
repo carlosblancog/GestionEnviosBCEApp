@@ -93,11 +93,13 @@ sap.ui.define([
             var that = this;
             var aTabDefs = [
                 { tabId: "tabTodos", filter: null },
-                { tabId: "tabC", filter: new Filter("Estado", FilterOperator.EQ, "C") },
-                { tabId: "tabW", filter: new Filter("Estado", FilterOperator.EQ, "W") },
-                { tabId: "tabR", filter: new Filter("Estado", FilterOperator.EQ, "R") },
-                { tabId: "tabF", filter: new Filter("Estado", FilterOperator.EQ, "F") },
-                { tabId: "tabE", filter: new Filter("Estado", FilterOperator.EQ, "E") }
+                { tabId: "tabOK",  filter: new Filter("Estado", FilterOperator.EQ, "C") },
+                { tabId: "tabKO",  filter: new Filter({ filters: [
+                    new Filter("Estado", FilterOperator.EQ, "R"),
+                    new Filter("Estado", FilterOperator.EQ, "F"),
+                    new Filter("Estado", FilterOperator.EQ, "W")
+                ], and: false }) },
+                { tabId: "tabSin", filter: new Filter("Estado", FilterOperator.EQ, "E") }
             ];
             aTabDefs.forEach(function (oDef) {
                 oModel.read("/EnviosCabeceraSet", {
@@ -168,7 +170,17 @@ sap.ui.define([
         _applyFilters: function () {
             var aFilters = [];
             if (this._sEstadoFilter && this._sEstadoFilter !== "all") {
-                aFilters.push(new Filter("Estado", FilterOperator.EQ, this._sEstadoFilter));
+                if (this._sEstadoFilter === "OK") {
+                    aFilters.push(new Filter("Estado", FilterOperator.EQ, "C"));
+                } else if (this._sEstadoFilter === "KO") {
+                    aFilters.push(new Filter({ filters: [
+                        new Filter("Estado", FilterOperator.EQ, "R"),
+                        new Filter("Estado", FilterOperator.EQ, "F"),
+                        new Filter("Estado", FilterOperator.EQ, "W")
+                    ], and: false }));
+                } else if (this._sEstadoFilter === "SIN") {
+                    aFilters.push(new Filter("Estado", FilterOperator.EQ, "E"));
+                }
             }
             if (this._sSearchValue && this._sSearchValue.trim().length > 0) {
                 aFilters.push(new Filter("Clave", FilterOperator.Contains, this._sSearchValue.trim()));

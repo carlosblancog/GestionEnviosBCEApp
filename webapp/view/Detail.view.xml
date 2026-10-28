@@ -14,36 +14,48 @@
                     <uxap:ObjectPageDynamicHeaderTitle>
                         <uxap:heading>
                             <VBox>
-                                <Title id="objectTitle" text="{Clave}" level="H2"/>
+                                <HBox alignItems="Center">
+                                    <Text text="{i18n>lblClave}:" class="claveEtiqueta sapUiTinyMarginEnd"/>
+                                    <Title id="objectTitle" text="{Clave}" level="H2"/>
+                                </HBox>
                                 <Label text="{TipoMensaje}" class="sapUiTinyMarginTop"/>
                             </VBox>
                         </uxap:heading>
+                        <uxap:snappedHeading>
+                            <VBox>
+                                <HBox alignItems="Center">
+                                    <Text text="{i18n>lblClave}:" class="claveEtiqueta sapUiTinyMarginEnd"/>
+                                    <Title text="{Clave}" level="H3"/>
+                                </HBox>
+                                <Label text="{TipoMensaje}"/>
+                            </VBox>
+                        </uxap:snappedHeading>
                     </uxap:ObjectPageDynamicHeaderTitle>
                 </uxap:headerTitle>
 
                 <uxap:headerContent>
-                    <HBox alignItems="Center" wrap="Wrap" class="sapUiSmallMarginBottom">
+                    <HBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom" alignItems="Center" justifyContent="SpaceAround">
 
-                        <!-- Icono estado -->
-                        <VBox class="sapUiLargeMarginEnd" justifyContent="Center" alignItems="Center">
-                            <core:Icon
-                                src="{path: 'Estado', formatter: '.formatter.estadoIcon'}"
-                                size="3rem"
-                                color="{path: 'Estado', formatter: '.formatter.estadoColor'}"/>
-                        </VBox>
-
-                        <!-- Fechas -->
-                        <VBox class="sapUiLargeMarginEnd">
-                            <Title text="{i18n>lblFechas}" class="sapUiSmallMarginBottom"/>
-                            <HBox alignItems="Center" class="sapUiTinyMarginBottom">
-                                <core:Icon src="sap-icon://outgoing-call" size="1.2rem" color="#0070F2" class="sapUiTinyMarginEnd" tooltip="{i18n>colFechaEnvio}"/>
-                                <Text text="{path: 'FechaEnvio', formatter: '.formatter.formatUtcToLocal'}" class="headerDateText"/>
-                            </HBox>
-                            <HBox alignItems="Center">
-                                <core:Icon src="sap-icon://inbox" size="1.2rem" color="#0070F2" class="sapUiTinyMarginEnd" tooltip="{i18n>colFechaUltConf}"/>
-                                <Text text="{path: 'FechaUltConf', formatter: '.formatter.textoFechaResp'}" class="headerDateText"/>
-                            </HBox>
-                        </VBox>
+                        <!-- Icono + Fechas -->
+                        <HBox>
+                            <VBox class="sapUiLargeMarginEnd" justifyContent="Center" alignItems="Center">
+                                <core:Icon
+                                    src="sap-icon://outbox"
+                                    size="3rem"
+                                    color="{path: 'Estado', formatter: '.formatter.estadoColor'}"/>
+                            </VBox>
+                            <VBox class="sapUiLargeMarginEnd">
+                                <Title text="{i18n>lblFechas}" class="sapUiSmallMarginBottom"/>
+                                <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                                    <core:Icon src="sap-icon://outgoing-call" size="1.3rem" color="#0070F2" class="sapUiTinyMarginEnd" tooltip="{i18n>colFechaEnvio}"/>
+                                    <Text text="{path: 'FechaEnvio', formatter: '.formatter.formatUtcToLocal'}" class="headerDateText"/>
+                                </HBox>
+                                <HBox alignItems="Center">
+                                    <core:Icon src="sap-icon://inbox" size="1.3rem" color="#0070F2" class="sapUiTinyMarginEnd" tooltip="{i18n>colFechaUltConf}"/>
+                                    <Text text="{path: 'FechaUltConf', formatter: '.formatter.textoFechaResp'}" class="headerDateText"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
 
                         <!-- Estado -->
                         <VBox class="sapUiLargeMarginEnd">
