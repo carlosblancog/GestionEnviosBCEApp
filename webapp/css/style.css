@@ -1,1 +1,35 @@
 /* GestionEnviosBCE — custom styles */
+
+@keyframes rotation {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.rotating {
+    display: inline-block;
+    animation: rotation 1.5s linear infinite;
+}
+
+.boldText {
+    font-weight: bold;
+}
+
+.claveText {
+    font-size: 1rem;
+}
+
+.claveSubText {
+    font-size: 0.75rem;
+    color: var(--sapContent_LabelColor, #6A6D70);
+}
+
+.claveValorNegrita {
+    font-weight: bold;
+}
+
+.claveEtiquetaList {
+    font-size: 0.75rem;
+    color: var(--sapContent_LabelColor, #6A6D70);
+    font-weight: normal;
+    line-height: 1.5rem;
+}

@@ -1,66 +1,154 @@
-<mvc:View
-    controllerName="zbce.envios.controller.Main"
+<mvc:View controllerName="zbce.envios.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:core="sap.ui.core">
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
 
-    <Page title="{i18n>titleHistorial}" showNavButton="false">
+    <Page id="listPage" title="{i18n>titleHistorial}" showNavButton="false" class="sapUiContentPadding">
+
         <headerContent>
             <Button
                 text="{i18n>btnNuevoEnvio}"
                 type="Emphasized"
+                icon="sap-icon://add"
                 press=".onNuevoEnvio"/>
         </headerContent>
 
+        <subHeader>
+            <Bar>
+                <contentLeft>
+                    <SearchField
+                        id="searchField"
+                        placeholder="{i18n>placeholderBusqueda}"
+                        width="18rem"
+                        liveChange=".onSearch"
+                        search=".onSearch"/>
+                    <DatePicker
+                        id="datePickerFrom"
+                        placeholder="{i18n>placeholderFechaDesde}"
+                        displayFormat="dd/MM/yyyy"
+                        valueFormat="dd.MM.yyyy"
+                        change=".onDateRangeChange"
+                        width="10rem"
+                        class="sapUiSmallMarginBegin"/>
+                    <DatePicker
+                        id="datePickerTo"
+                        placeholder="{i18n>placeholderFechaHasta}"
+                        displayFormat="dd/MM/yyyy"
+                        valueFormat="dd.MM.yyyy"
+                        change=".onDateRangeChange"
+                        width="10rem"
+                        class="sapUiTinyMarginBegin"/>
+                    <Button
+                        icon="sap-icon://clear-filter"
+                        tooltip="{i18n>btnLimpiarFechas}"
+                        press=".onClearDateFilters"
+                        class="sapUiTinyMarginBegin"/>
+                </contentLeft>
+            </Bar>
+        </subHeader>
+
         <content>
-            <Table
-                id="tablaCabeceras"
-                items="{
-                    path: '/EnviosCabeceraSet',
-                    sorter: { path: 'FechaEnvio', descending: true }
-                }"
-                growing="true"
-                growingThreshold="20"
-                noDataText="{i18n>noEnvios}">
-
-                <headerToolbar>
-                    <Toolbar>
-                        <Title text="{i18n>titleHistorial}"/>
-                        <ToolbarSpacer/>
-                        <Button icon="sap-icon://refresh" press=".onRefresh" tooltip="{i18n>btnRefresh}"/>
-                    </Toolbar>
-                </headerToolbar>
-
-                <columns>
-                    <Column><Text text="{i18n>colClave}"/></Column>
-                    <Column><Text text="{i18n>colEstado}"/></Column>
-                    <Column><Text text="{i18n>colFechaEnvio}"/></Column>
-                    <Column><Text text="{i18n>colTipoMensaje}"/></Column>
-                    <Column><Text text="{i18n>colPendiente}"/></Column>
-                </columns>
-
+            <IconTabBar
+                id="estadoTabBar"
+                select=".onEstadoTabSelect"
+                expandable="false"
+                stretchContentHeight="true"
+                backgroundDesign="Transparent"
+                class="sapUiNoContentPadding">
                 <items>
-                    <ColumnListItem
-                        type="Navigation"
-                        press=".onEnvioPress">
-                        <cells>
-                            <Text text="{Clave}"/>
-                            <ObjectStatus
-                                text="{Estado}"
-                                state="{
-                                    path: 'Estado',
-                                    formatter: '.formatEstadoState'
-                                }"/>
-                            <Text text="{FechaEnvio}"/>
-                            <Text text="{TipoMensaje}"/>
-                            <core:Icon
-                                src="sap-icon://message-warning"
-                                color="Critical"
-                                visible="{PendienteResp}"/>
-                        </cells>
-                    </ColumnListItem>
+                    <IconTabFilter id="tabTodos" key="all" text="{i18n>filtroTodos}"    showAll="true"/>
+                    <IconTabFilter id="tabC"     key="C"   text="{i18n>filtroEstadoC}"  iconColor="Positive"    icon="sap-icon://status-positive"/>
+                    <IconTabFilter id="tabW"     key="W"   text="{i18n>filtroEstadoW}"  iconColor="Critical"    icon="sap-icon://status-critical"/>
+                    <IconTabFilter id="tabR"     key="R"   text="{i18n>filtroEstadoR}"  iconColor="Negative"    icon="sap-icon://status-negative"/>
+                    <IconTabFilter id="tabF"     key="F"   text="{i18n>filtroEstadoF}"  iconColor="Negative"    icon="sap-icon://disconnected"/>
+                    <IconTabFilter id="tabE"     key="E"   text="{i18n>filtroEstadoE}"  iconColor="Default"     icon="sap-icon://status-in-process"/>
                 </items>
-            </Table>
+                <content>
+                    <Table
+                        id="tablaCabeceras"
+                        items="{
+                            path: '/EnviosCabeceraSet',
+                            sorter: { path: 'FechaEnvio', descending: true }
+                        }"
+                        growing="true"
+                        growingThreshold="30"
+                        growingScrollToLoad="true"
+                        noDataText="{i18n>noEnvios}"
+                        sticky="ColumnHeaders,HeaderToolbar"
+                        updateFinished=".onTableUpdateFinished">
+
+                        <infoToolbar>
+                            <Toolbar id="filterInfoToolbar" visible="false">
+                                <core:Icon src="sap-icon://filter" color="#0070F2" class="sapUiTinyMarginEnd"/>
+                                <Text id="filterInfoText" text="" wrapping="false"/>
+                            </Toolbar>
+                        </infoToolbar>
+
+                        <headerToolbar>
+                            <Toolbar>
+                                <Title id="tableTitle" text="{i18n>titleHistorial}"/>
+                                <ToolbarSpacer/>
+                                <Button icon="sap-icon://refresh" tooltip="{i18n>btnRefresh}" press=".onRefresh"/>
+                                <Button id="btnAutoRefresh" icon="sap-icon://pause" tooltip="{i18n>btnPausarAutoRefresh}" press=".onToggleAutoRefresh"/>
+                            </Toolbar>
+                        </headerToolbar>
+
+                        <columns>
+                            <Column id="colClave" width="22rem">
+                                <Text text="{i18n>colClave}"/>
+                            </Column>
+                            <Column id="colTipoMensaje" width="14rem" minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="{i18n>colTipoMensaje}"/>
+                            </Column>
+                            <Column id="colFechaEnvio" width="11rem" minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="{i18n>colFechaEnvio}"/>
+                            </Column>
+                            <Column id="colPendiente" width="8rem" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="{i18n>colPendiente}"/>
+                            </Column>
+                            <Column id="colFechaUltConf" width="11rem" minScreenWidth="Desktop" demandPopin="true">
+                                <Text text="{i18n>colFechaUltConf}"/>
+                            </Column>
+                        </columns>
+
+                        <items>
+                            <ColumnListItem type="Navigation" press=".onEnvioPress">
+                                <cells>
+                                    <!-- Clave con icono de estado -->
+                                    <HBox alignItems="Center">
+                                        <core:Icon
+                                            src="{path: 'Estado', formatter: '.formatter.estadoIcon'}"
+                                            size="2rem"
+                                            class="sapUiSmallMarginEnd"
+                                            color="{path: 'Estado', formatter: '.formatter.estadoColor'}"
+                                            tooltip="{path: 'Estado', formatter: '.formatter.estadoText'}"/>
+                                        <VBox justifyContent="Center">
+                                            <Text text="{Clave}" class="claveText claveValorNegrita"/>
+                                            <Text text="{path: 'Estado', formatter: '.formatter.estadoText'}" class="claveSubText"/>
+                                        </VBox>
+                                    </HBox>
+
+                                    <!-- TipoMensaje -->
+                                    <Text text="{TipoMensaje}"/>
+
+                                    <!-- FechaEnvio -->
+                                    <Text text="{path: 'FechaEnvio', formatter: '.formatter.formatUtcToLocal'}" class="boldText"/>
+
+                                    <!-- PendienteResp -->
+                                    <HBox alignItems="Center" justifyContent="Center">
+                                        <core:Icon src="sap-icon://synchronize" size="1.2rem" color="#0070F2" class="rotating" visible="{PendienteResp}" tooltip="{i18n>pendienteSi}"/>
+                                        <core:Icon src="sap-icon://status-completed" size="1.2rem" color="#107E3E" visible="{= !${PendienteResp} }" tooltip="{i18n>pendienteNo}"/>
+                                    </HBox>
+
+                                    <!-- FechaUltConf -->
+                                    <Text text="{path: 'FechaUltConf', formatter: '.formatter.textoFechaResp'}"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </content>
+            </IconTabBar>
         </content>
     </Page>
 </mvc:View>
