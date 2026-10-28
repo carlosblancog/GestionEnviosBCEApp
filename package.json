@@ -1,0 +1,15 @@
+{
+  "name": "gestion-envios-bce",
+  "version": "0.0.1",
+  "description": "Aplicacion Fiori SAPUI5 para la gestion de envios a BCE",
+  "scripts": {
+    "start": "ui5 serve --open index.html",
+    "build": "ui5 build --clean-dest",
+    "deploy": "ui5 build --clean-dest && ui5 build --config ui5-deploy.yaml",
+    "lint": "eslint webapp"
+  },
+  "devDependencies": {
+    "@sap/ux-ui5-tooling": "^1",
+    "@ui5/cli": "^3.11.13"
+  }
+}

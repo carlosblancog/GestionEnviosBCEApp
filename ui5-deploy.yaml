@@ -1,0 +1,28 @@
+specVersion: "3.0"
+metadata:
+  name: gestion-envios-bce
+type: application
+framework:
+  name: SAPUI5
+  version: "1.120.1"
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.uxap
+    - name: sap.f
+    - name: sap.ui.layout
+    - name: themelib_sap_horizon
+builder:
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateVersionInfo
+      configuration:
+        target:
+          destination: s4hana_backend
+          scp: true
+          client: "100"
+        app:
+          name: ZGESTION_ENVIOS_BCE
+          package: ZINTEGRACION
+          transport: DS4K900506
+        ignoreCertError: true
