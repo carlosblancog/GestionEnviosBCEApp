@@ -40,7 +40,8 @@
         "sap.m": {},
         "sap.ui.core": {},
         "sap.f": {},
-        "sap.ui.layout": {}
+        "sap.ui.layout": {},
+        "sap.uxap": {}
       }
     },
     "models": {
@@ -73,6 +74,11 @@
           "target": "Main"
         },
         {
+          "name": "Detail",
+          "pattern": "detail/{idCabecera}",
+          "target": "Detail"
+        },
+        {
           "name": "EnvioManual",
           "pattern": "envioManual",
           "target": "EnvioManual"
@@ -80,6 +86,7 @@
       ],
       "targets": {
         "Main": { "viewName": "Main", "viewLevel": 1 },
+        "Detail": { "viewName": "Detail", "viewLevel": 2 },
         "EnvioManual": { "viewName": "EnvioManual", "viewLevel": 2 }
       }
     }

@@ -224,7 +224,9 @@ sap.ui.define([
 
         onEnvioPress: function (oEvent) {
             var sId = oEvent.getSource().getBindingContext().getProperty("IdCabecera");
-            sap.m.MessageToast.show("Envio: " + sId);
+            this.getOwnerComponent().getRouter().navTo("Detail", {
+                idCabecera: encodeURIComponent(sId)
+            });
         }
     });
 });
