@@ -21,8 +21,9 @@
 
                         <Label text="{i18n>lblTipo}" required="true"/>
                         <Select id="selTipo">
-                            <core:Item xmlns:core="sap.ui.core" key="U" text="U — Urgente"/>
-                            <core:Item xmlns:core="sap.ui.core" key="B" text="B — Batch"/>
+                            <core:Item xmlns:core="sap.ui.core" key="B" text="{i18n>tipoInformeB}"/>
+                            <core:Item xmlns:core="sap.ui.core" key="U" text="{i18n>tipoInformeU}"/>
+                            <core:Item xmlns:core="sap.ui.core" key="R" text="{i18n>tipoInformeR}"/>
                         </Select>
                     </f:content>
                 </f:SimpleForm>
