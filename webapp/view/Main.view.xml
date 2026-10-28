@@ -51,11 +51,7 @@
                                     path: 'Estado',
                                     formatter: '.formatEstadoState'
                                 }"/>
-                            <Text text="{
-                                path: 'FechaEnvio',
-                                type: 'sap.ui.model.type.DateTime',
-                                formatOptions: { style: 'medium' }
-                            }"/>
+                            <Text text="{FechaEnvio}"/>
                             <Text text="{TipoMensaje}"/>
                             <core:Icon
                                 src="sap-icon://message-warning"
