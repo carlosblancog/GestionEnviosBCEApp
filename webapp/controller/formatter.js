@@ -32,6 +32,13 @@ sap.ui.define([], function () {
             return formatLocalDate(oDate);
         },
 
+        textoFechaReenvio: function (sFecha) {
+            if (!sFecha || sFecha === "00.00.0000 00:00:00") { return "Sin reenvíos"; }
+            var oDate = parseUtcString(sFecha);
+            if (!oDate || isNaN(oDate.getTime())) { return sFecha; }
+            return formatLocalDate(oDate);
+        },
+
         estadoColor: function (sEstado) {
             switch (sEstado) {
                 case "C": return "#107E3E";
