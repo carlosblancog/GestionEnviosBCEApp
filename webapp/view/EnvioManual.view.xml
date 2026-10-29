@@ -45,7 +45,7 @@
 
                 <Table
                     id="tablaPreview"
-                    items="{viewModel>/previewData}"
+                    items="{path: 'viewModel>/previewData', sorter: {path: 'Epigrafe', descending: false}}"
                     noDataText="{i18n>noPreviewData}">
                     <columns>
                         <Column><Text text="{i18n>colEpigrafe}"/></Column>

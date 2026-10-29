@@ -113,10 +113,10 @@
                         <items>
                             <ColumnListItem type="Navigation" press=".onEnvioPress">
                                 <cells>
-                                    <!-- Clave con icono de estado -->
+                                    <!-- Clave con icono de envio coloreado por estado -->
                                     <HBox alignItems="Center">
                                         <core:Icon
-                                            src="{path: 'Estado', formatter: '.formatter.estadoIcon'}"
+                                            src="sap-icon://outbox"
                                             size="2rem"
                                             class="sapUiSmallMarginEnd"
                                             color="{path: 'Estado', formatter: '.formatter.estadoColor'}"
