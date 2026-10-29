@@ -222,7 +222,7 @@ sap.ui.define([
         onTableUpdateFinished: function (oEvent) {
             var iTotal  = oEvent.getParameter("total");
             var oBundle = this.getView().getModel("i18n").getResourceBundle();
-            this.byId("tableTitle").setText(oBundle.getText("titleHistorial") + " (" + iTotal + ")");
+            this.byId("tableTitle").setText(oBundle.getText("title") + " (" + iTotal + ")");
         },
 
         onRefresh: function () {
