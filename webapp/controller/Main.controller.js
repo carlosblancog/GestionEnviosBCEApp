@@ -92,14 +92,14 @@ sap.ui.define([
             if (!oModel) { return; }
             var that = this;
             var aTabDefs = [
-                { tabId: "tabTodos", filter: null },
-                { tabId: "tabOK",  filter: new Filter("Estado", FilterOperator.EQ, "C") },
-                { tabId: "tabKO",  filter: new Filter({ filters: [
+                { tabId: "tabTodos",    filter: null },
+                { tabId: "tabOK",       filter: new Filter("Estado", FilterOperator.EQ, "C") },
+                { tabId: "tabKO",       filter: new Filter({ filters: [
                     new Filter("Estado", FilterOperator.EQ, "R"),
-                    new Filter("Estado", FilterOperator.EQ, "F"),
                     new Filter("Estado", FilterOperator.EQ, "W")
                 ], and: false }) },
-                { tabId: "tabSin", filter: new Filter("Estado", FilterOperator.EQ, "E") }
+                { tabId: "tabConexion", filter: new Filter("Estado", FilterOperator.EQ, "F") },
+                { tabId: "tabSin",      filter: new Filter("Estado", FilterOperator.EQ, "E") }
             ];
             aTabDefs.forEach(function (oDef) {
                 oModel.read("/EnviosCabeceraSet", {
@@ -175,9 +175,10 @@ sap.ui.define([
                 } else if (this._sEstadoFilter === "KO") {
                     aFilters.push(new Filter({ filters: [
                         new Filter("Estado", FilterOperator.EQ, "R"),
-                        new Filter("Estado", FilterOperator.EQ, "F"),
                         new Filter("Estado", FilterOperator.EQ, "W")
                     ], and: false }));
+                } else if (this._sEstadoFilter === "FC") {
+                    aFilters.push(new Filter("Estado", FilterOperator.EQ, "F"));
                 } else if (this._sEstadoFilter === "SIN") {
                     aFilters.push(new Filter("Estado", FilterOperator.EQ, "E"));
                 }

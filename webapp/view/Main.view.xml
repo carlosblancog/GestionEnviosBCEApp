@@ -57,10 +57,11 @@
                 backgroundDesign="Transparent"
                 class="sapUiNoContentPadding">
                 <items>
-                    <IconTabFilter id="tabTodos" key="all" text="{i18n>filtroTodos}"   showAll="true"/>
-                    <IconTabFilter id="tabOK"    key="OK"  text="{i18n>filtroEstadoOK}" iconColor="Positive" icon="sap-icon://status-positive"/>
-                    <IconTabFilter id="tabKO"    key="KO"  text="{i18n>filtroEstadoKO}" iconColor="Negative" icon="sap-icon://status-negative"/>
-                    <IconTabFilter id="tabSin"   key="SIN" text="{i18n>filtroEstadoSin}" iconColor="Default" icon="sap-icon://status-inactive"/>
+                    <IconTabFilter id="tabTodos"    key="all" text="{i18n>filtroTodos}"          showAll="true"/>
+                    <IconTabFilter id="tabOK"       key="OK"  text="{i18n>filtroEstadoOK}"       iconColor="Positive" icon="sap-icon://status-positive"/>
+                    <IconTabFilter id="tabKO"        key="KO"  text="{i18n>filtroEstadoKO}"       iconColor="Negative" icon="sap-icon://status-negative"/>
+                    <IconTabFilter id="tabConexion" key="FC"  text="{i18n>filtroEstadoConexion}" iconColor="Negative" icon="sap-icon://disconnected"/>
+                    <IconTabFilter id="tabSin"      key="SIN" text="{i18n>filtroEstadoSin}"      iconColor="Default"  icon="sap-icon://status-inactive"/>
                 </items>
                 <content>
                     <Table
