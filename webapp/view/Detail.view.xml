@@ -57,11 +57,11 @@
                                     <core:Icon src="sap-icon://outgoing-call" size="1.3rem" color="#0070F2" class="sapUiTinyMarginEnd" tooltip="{i18n>colFechaEnvio}"/>
                                     <Text text="{path: 'FechaEnvio', formatter: '.formatter.formatUtcToLocal'}" class="headerDateText"/>
                                 </HBox>
-                                <HBox alignItems="Center">
+                                <HBox alignItems="Center" class="sapUiTinyMarginBottom">
                                     <core:Icon src="sap-icon://inbox" size="1.3rem" color="#0070F2" class="sapUiTinyMarginEnd" tooltip="{i18n>colFechaUltConf}"/>
                                     <Text text="{path: 'FechaUltConf', formatter: '.formatter.textoFechaResp'}" class="headerDateText"/>
                                 </HBox>
-                                <HBox alignItems="Center">
+                                <HBox alignItems="Center" class="sapUiTinyMarginBottom">
                                     <core:Icon src="sap-icon://repost" size="1.3rem" color="#E9730C" class="sapUiTinyMarginEnd" tooltip="{i18n>colFechaReenvio}"/>
                                     <Text text="{path: 'detailModel>/ultimoReenvio', formatter: '.formatter.textoFechaReenvio'}" class="headerDateText"/>
                                 </HBox>
