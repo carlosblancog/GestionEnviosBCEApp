@@ -61,6 +61,10 @@
                                     <core:Icon src="sap-icon://inbox" size="1.3rem" color="#0070F2" class="sapUiTinyMarginEnd" tooltip="{i18n>colFechaUltConf}"/>
                                     <Text text="{path: 'FechaUltConf', formatter: '.formatter.textoFechaResp'}" class="headerDateText"/>
                                 </HBox>
+                                <HBox alignItems="Center" visible="{= !!${detailModel>/ultimoReenvio} }">
+                                    <core:Icon src="sap-icon://repost" size="1.3rem" color="#E9730C" class="sapUiTinyMarginEnd" tooltip="{i18n>colFechaReenvio}"/>
+                                    <Text text="{path: 'detailModel>/ultimoReenvio', formatter: '.formatter.formatUtcToLocal'}" class="headerDateText"/>
+                                </HBox>
                             </VBox>
                         </HBox>
 

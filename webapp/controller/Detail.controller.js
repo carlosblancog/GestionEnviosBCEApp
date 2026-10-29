@@ -14,7 +14,7 @@ sap.ui.define([
         formatter: formatter,
 
         onInit: function () {
-            var oDetailModel = new JSONModel({ comunicaciones: [] });
+            var oDetailModel = new JSONModel({ comunicaciones: [], ultimoReenvio: "" });
             this.getView().setModel(oDetailModel, "detailModel");
 
             var oMensajesModel = new JSONModel({ titulo: "", mensajes: [] });
@@ -56,8 +56,18 @@ sap.ui.define([
                 filters: [new Filter("IdCabecera", FilterOperator.EQ, sIdCabecera)],
                 urlParameters: { "$orderby": "NumEnvio asc" },
                 success: function (oData) {
+                    var aComunicaciones = oData.results || [];
                     this.getView().getModel("detailModel")
-                        .setProperty("/comunicaciones", oData.results || []);
+                        .setProperty("/comunicaciones", aComunicaciones);
+
+                    // Fecha del ultimo reenvio: FechaEnvio de la comunicacion con NumEnvio mas alto > 1
+                    var oDetailModel = this.getView().getModel("detailModel");
+                    var aReenvios = aComunicaciones.filter(function (c) { return c.NumEnvio > 1; });
+                    if (aReenvios.length > 0) {
+                        oDetailModel.setProperty("/ultimoReenvio", aReenvios[aReenvios.length - 1].FechaEnvio);
+                    } else {
+                        oDetailModel.setProperty("/ultimoReenvio", "");
+                    }
                 }.bind(this),
                 error: function (oError) {
                     MessageBox.error("Error al cargar las comunicaciones: " + (oError.message || ""));
