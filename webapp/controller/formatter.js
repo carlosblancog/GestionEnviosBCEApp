@@ -39,6 +39,16 @@ sap.ui.define([], function () {
             return formatLocalDate(oDate);
         },
 
+        tipoInformeText: function (sTipoMensaje) {
+            var sTipo = sTipoMensaje ? sTipoMensaje.slice(-1) : "";
+            switch (sTipo) {
+                case "U": return "Informe Diario";
+                case "B": return "Informe Mensual";
+                case "R": return "Informe Trimestral";
+                default:  return sTipoMensaje || "";
+            }
+        },
+
         estadoColor: function (sEstado) {
             switch (sEstado) {
                 case "C": return "#107E3E";

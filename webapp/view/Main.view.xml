@@ -124,7 +124,7 @@
                                             tooltip="{path: 'Estado', formatter: '.formatter.estadoText'}"/>
                                         <VBox justifyContent="Center">
                                             <Text text="{Clave}" class="claveText claveValorNegrita"/>
-                                            <Text text="{path: 'Estado', formatter: '.formatter.estadoText'}" class="claveSubText"/>
+                                            <Text text="{path: 'TipoMensaje', formatter: '.formatter.tipoInformeText'}" class="claveSubText"/>
                                         </VBox>
                                     </HBox>
 
