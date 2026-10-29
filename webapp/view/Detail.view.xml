@@ -12,6 +12,13 @@
 
                 <uxap:headerTitle>
                     <uxap:ObjectPageDynamicHeaderTitle>
+                        <uxap:actions>
+                            <Button
+                                text="{i18n>btnVerInforme}"
+                                icon="sap-icon://table-view"
+                                type="Emphasized"
+                                press=".onVerInforme"/>
+                        </uxap:actions>
                         <uxap:heading>
                             <VBox>
                                 <HBox alignItems="Center">

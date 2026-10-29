@@ -20,7 +20,11 @@ sap.ui.define([
             var oMensajesModel = new JSONModel({ titulo: "", mensajes: [] });
             this.getView().setModel(oMensajesModel, "mensajesModel");
 
+            var oInformeModel = new JSONModel({ titulo: "", lineas: [] });
+            this.getView().setModel(oInformeModel, "informeModel");
+
             this._oMensajesDialog = null;
+            this._oInformeDialog = null;
 
             this.getOwnerComponent().getRouter()
                 .getRoute("Detail")
@@ -118,6 +122,62 @@ sap.ui.define([
         onCloseMensajesDialog: function () {
             if (this._oMensajesDialog) {
                 this._oMensajesDialog.close();
+            }
+        },
+
+        onVerInforme: function () {
+            var oCtx = this.getView().getBindingContext();
+            if (!oCtx) { return; }
+
+            var sIdInforme = oCtx.getProperty("Auxiliar");
+            var sClave     = oCtx.getProperty("Clave");
+            if (!sIdInforme) {
+                MessageBox.warning("Este envío no tiene informe asociado.");
+                return;
+            }
+
+            var sTitulo = this.getView().getModel("i18n").getResourceBundle()
+                .getText("tituloInformeDialog") + " — " + sClave;
+            this.getView().getModel("informeModel").setProperty("/titulo", sTitulo);
+            this.getView().getModel("informeModel").setProperty("/lineas", []);
+
+            var oModel = this.getOwnerComponent().getModel();
+            oModel.callFunction("/GetInformeData", {
+                method: "GET",
+                urlParameters: { IdInforme: sIdInforme },
+                success: function (oData) {
+                    var aLineas = oData.results || [];
+                    this.getView().getModel("informeModel").setProperty("/lineas", aLineas);
+                    this._abrirInformeDialog();
+                }.bind(this),
+                error: function (oError) {
+                    MessageBox.error("Error al cargar los datos del informe: " + (oError.message || ""));
+                }
+            });
+        },
+
+        _abrirInformeDialog: function () {
+            if (!this._oInformeDialog) {
+                var that = this;
+                sap.ui.require(["sap/ui/core/Fragment"], function (Fragment) {
+                    Fragment.load({
+                        id: that.getView().getId(),
+                        name: "zbce.envios.fragment.InformeDialog",
+                        controller: that
+                    }).then(function (oDialog) {
+                        that._oInformeDialog = oDialog;
+                        that.getView().addDependent(oDialog);
+                        oDialog.open();
+                    });
+                });
+            } else {
+                this._oInformeDialog.open();
+            }
+        },
+
+        onCloseInformeDialog: function () {
+            if (this._oInformeDialog) {
+                this._oInformeDialog.close();
             }
         }
     });
