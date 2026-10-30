@@ -110,24 +110,21 @@ sap.ui.define([
                 urlParameters: { Fecha: sFecha, Tipo: sTipo },
                 success: function (oData) {
                     oBusy.close();
-                    var oResult = oData;
-                    oVM.setProperty("/result",        oResult);
-                    oVM.setProperty("/resultVisible", true);
-
-                    if (oResult.Success === true || oResult.Success === "true") {
-                        oVM.setProperty("/resultMsg",  this._i18n("msgEnvioOk") + " v" + oResult.Version);
-                        oVM.setProperty("/resultType", "Success");
+                    if (oData.Success === true || oData.Success === "true") {
+                        MessageBox.success(
+                            this._i18n("msgEnvioOk") + " v" + oData.Version,
+                            { onClose: function () {
+                                this.getOwnerComponent().getRouter().navTo("Main");
+                            }.bind(this) }
+                        );
                     } else {
-                        oVM.setProperty("/resultMsg",  oResult.ErrorMsg || this._i18n("msgEnvioFallido"));
-                        oVM.setProperty("/resultType", "Error");
-                        oVM.setProperty("/confirmEnabled", true);  // permitir reintento
+                        MessageBox.error(oData.ErrorMsg || this._i18n("msgEnvioFallido"));
+                        oVM.setProperty("/confirmEnabled", true);
                     }
                 }.bind(this),
                 error: function () {
                     oBusy.close();
-                    oVM.setProperty("/resultVisible", true);
-                    oVM.setProperty("/resultMsg",     this._i18n("msgEnvioFallido"));
-                    oVM.setProperty("/resultType",    "Error");
+                    MessageBox.error(this._i18n("msgEnvioFallido"));
                     oVM.setProperty("/confirmEnabled", true);
                 }.bind(this)
             });
