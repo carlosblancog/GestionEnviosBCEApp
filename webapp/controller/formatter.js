@@ -4,10 +4,10 @@ sap.ui.define([], function () {
     function parseUtcString(sValue) {
         var m = /^(\d{2})\.(\d{2})\.(\d{4}) (\d{2}):(\d{2}):(\d{2})$/.exec(sValue);
         if (!m) { return null; }
-        return new Date(Date.UTC(
+        return new Date(
             parseInt(m[3], 10), parseInt(m[2], 10) - 1, parseInt(m[1], 10),
             parseInt(m[4], 10), parseInt(m[5], 10),     parseInt(m[6], 10)
-        ));
+        );
     }
 
     function formatLocalDate(oDate) {
