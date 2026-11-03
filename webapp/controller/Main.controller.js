@@ -93,13 +93,10 @@ sap.ui.define([
             var that = this;
             var aTabDefs = [
                 { tabId: "tabTodos",    filter: null },
-                { tabId: "tabOK",       filter: new Filter("Estado", FilterOperator.EQ, "C") },
-                { tabId: "tabKO",       filter: new Filter({ filters: [
-                    new Filter("Estado", FilterOperator.EQ, "R"),
-                    new Filter("Estado", FilterOperator.EQ, "W")
-                ], and: false }) },
-                { tabId: "tabConexion", filter: new Filter("Estado", FilterOperator.EQ, "F") },
-                { tabId: "tabSin",      filter: new Filter("Estado", FilterOperator.EQ, "E") }
+                { tabId: "tabOK",       filter: new Filter("Estado", FilterOperator.EQ, "1") },
+                { tabId: "tabKO",       filter: new Filter("Estado", FilterOperator.EQ, "3") },
+                { tabId: "tabConexion", filter: new Filter("Estado", FilterOperator.EQ, "9") },
+                { tabId: "tabSin",      filter: new Filter("Estado", FilterOperator.EQ, "") }
             ];
             aTabDefs.forEach(function (oDef) {
                 oModel.read("/EnviosCabeceraSet", {
@@ -171,16 +168,13 @@ sap.ui.define([
             var aFilters = [];
             if (this._sEstadoFilter && this._sEstadoFilter !== "all") {
                 if (this._sEstadoFilter === "OK") {
-                    aFilters.push(new Filter("Estado", FilterOperator.EQ, "C"));
+                    aFilters.push(new Filter("Estado", FilterOperator.EQ, "1"));
                 } else if (this._sEstadoFilter === "KO") {
-                    aFilters.push(new Filter({ filters: [
-                        new Filter("Estado", FilterOperator.EQ, "R"),
-                        new Filter("Estado", FilterOperator.EQ, "W")
-                    ], and: false }));
+                    aFilters.push(new Filter("Estado", FilterOperator.EQ, "3"));
                 } else if (this._sEstadoFilter === "FC") {
-                    aFilters.push(new Filter("Estado", FilterOperator.EQ, "F"));
+                    aFilters.push(new Filter("Estado", FilterOperator.EQ, "9"));
                 } else if (this._sEstadoFilter === "SIN") {
-                    aFilters.push(new Filter("Estado", FilterOperator.EQ, "E"));
+                    aFilters.push(new Filter("Estado", FilterOperator.EQ, ""));
                 }
             }
             if (this._sSearchValue && this._sSearchValue.trim().length > 0) {

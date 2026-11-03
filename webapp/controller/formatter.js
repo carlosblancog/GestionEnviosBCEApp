@@ -51,44 +51,40 @@ sap.ui.define([], function () {
 
         estadoColor: function (sEstado) {
             switch (sEstado) {
-                case "C": return "#107E3E";
-                case "W": return "#E9730C";
-                case "R": return "#BB0000";
-                case "F": return "#6C1220";
-                case "E": return "#0070F2";
+                case "1": return "#107E3E";
+                case "3": return "#BB0000";
+                case "9": return "#6C1220";
+                case "":  return "#0070F2";
                 default:  return "#8696A9";
             }
         },
 
         estadoText: function (sEstado) {
             switch (sEstado) {
-                case "C": return "Confirmado";
-                case "W": return "Con advertencias";
-                case "R": return "Rechazado";
-                case "F": return "Fallido";
-                case "E": return "En proceso";
+                case "1": return "OK";
+                case "3": return "KO";
+                case "9": return "Error comunicación";
+                case "":  return "En proceso";
                 default:  return "Sin estado";
             }
         },
 
         estadoState: function (sEstado) {
             switch (sEstado) {
-                case "C": return "Success";
-                case "W": return "Warning";
-                case "R": return "Error";
-                case "F": return "Error";
-                case "E": return "Information";
+                case "1": return "Success";
+                case "3": return "Error";
+                case "9": return "Error";
+                case "":  return "Information";
                 default:  return "None";
             }
         },
 
         estadoIcon: function (sEstado) {
             switch (sEstado) {
-                case "C": return "sap-icon://status-positive";
-                case "W": return "sap-icon://status-critical";
-                case "R": return "sap-icon://status-negative";
-                case "F": return "sap-icon://disconnected";
-                case "E": return "sap-icon://status-in-process";
+                case "1": return "sap-icon://status-positive";
+                case "3": return "sap-icon://status-negative";
+                case "9": return "sap-icon://disconnected";
+                case "":  return "sap-icon://status-in-process";
                 default:  return "sap-icon://status-inactive";
             }
         },
