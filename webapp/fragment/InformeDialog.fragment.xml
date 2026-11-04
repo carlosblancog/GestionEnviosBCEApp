@@ -41,7 +41,7 @@
                             <Text text="{informeModel>Epigrafe}"/>
                             <Text text="{informeModel>ParentLvl1}"/>
                             <Text text="{informeModel>ParentLvl2}"/>
-                            <Text text="{informeModel>Balance}"/>
+                            <Text text="{path: 'informeModel>Balance', formatter: '.formatter.formatBalance'}"/>
                         </cells>
                     </ColumnListItem>
                 </items>

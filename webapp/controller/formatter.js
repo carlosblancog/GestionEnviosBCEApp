@@ -123,6 +123,16 @@ sap.ui.define([], function () {
             }
         },
 
+        formatBalance: function (sValue) {
+            if (sValue === undefined || sValue === null || sValue === "") { return ""; }
+            var oFormat = sap.ui.core.format.NumberFormat.getFloatInstance({
+                groupingEnabled: true,
+                minFractionDigits: 2,
+                maxFractionDigits: 2
+            });
+            return oFormat.format(parseFloat(sValue));
+        },
+
         fechaRespState: function (sFecha) {
             if (!sFecha || sFecha === "00.00.0000 00:00:00") { return "Error"; }
             return "None";
