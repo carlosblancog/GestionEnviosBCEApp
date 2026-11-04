@@ -127,6 +127,8 @@ sap.ui.define([], function () {
             if (sValue === undefined || sValue === null || sValue === "") { return ""; }
             var oFormat = sap.ui.core.format.NumberFormat.getFloatInstance({
                 groupingEnabled: true,
+                groupingSeparator: ".",
+                decimalSeparator: ",",
                 minFractionDigits: 2,
                 maxFractionDigits: 2
             });
