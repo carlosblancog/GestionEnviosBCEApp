@@ -109,6 +109,9 @@
                             <Column id="colFechaUltConf" width="11rem" minScreenWidth="Desktop" demandPopin="true">
                                 <Text text="{i18n>colFechaUltConf}"/>
                             </Column>
+                            <Column id="colOrigen" width="12rem" minScreenWidth="Desktop" demandPopin="true">
+                                <Text text="{i18n>colOrigen}"/>
+                            </Column>
                         </columns>
 
                         <items>
@@ -142,6 +145,12 @@
 
                                     <!-- FechaUltConf -->
                                     <Text text="{path: 'FechaUltConf', formatter: '.formatter.textoFechaResp'}"/>
+
+                                    <!-- Origen -->
+                                    <VBox justifyContent="Center">
+                                        <Text text="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionText'}" class="claveText claveValorNegrita"/>
+                                        <Text text="{CreadoPor}" class="claveSubText"/>
+                                    </VBox>
                                 </cells>
                             </ColumnListItem>
                         </items>

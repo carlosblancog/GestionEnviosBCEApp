@@ -39,6 +39,14 @@ sap.ui.define([], function () {
             return formatLocalDate(oDate);
         },
 
+        tipoGeneracionText: function (sTipo) {
+            switch (sTipo) {
+                case "A": return "Manual";
+                case "B": return "Batch";
+                default:  return sTipo || "";
+            }
+        },
+
         tipoInformeText: function (sTipoMensaje) {
             var sTipo = sTipoMensaje ? sTipoMensaje.slice(-1) : "";
             switch (sTipo) {
