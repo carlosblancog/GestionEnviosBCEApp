@@ -89,36 +89,29 @@ sap.ui.define([], function () {
             }
         },
 
-        // Severidad SAP: S=Success I=Info W=Warning E=Error A=Abort
         severityIcon: function (sCode) {
             switch (sCode) {
-                case "S": return "sap-icon://sys-enter-2";
-                case "I": return "sap-icon://information";
-                case "W": return "sap-icon://alert";
-                case "E": return "sap-icon://error";
-                case "A": return "sap-icon://cancel";
+                case "1": return "sap-icon://sys-enter-2";
+                case "2": return "sap-icon://alert";
+                case "3": return "sap-icon://error";
                 default:  return "sap-icon://question-mark";
             }
         },
 
         severityColor: function (sCode) {
             switch (sCode) {
-                case "S": return "#107E3E";
-                case "I": return "#0070F2";
-                case "W": return "#E9730C";
-                case "E": return "#BB0000";
-                case "A": return "#6C1220";
+                case "1": return "#107E3E";
+                case "2": return "#E9730C";
+                case "3": return "#BB0000";
                 default:  return "#8696A9";
             }
         },
 
         severityText: function (sCode) {
             switch (sCode) {
-                case "S": return "Éxito";
-                case "I": return "Información";
-                case "W": return "Aviso";
-                case "E": return "Error";
-                case "A": return "Cancelado";
+                case "1": return "Éxito";
+                case "2": return "Aviso";
+                case "3": return "Error";
                 default:  return sCode || "";
             }
         },
