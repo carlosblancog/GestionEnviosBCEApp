@@ -50,16 +50,16 @@ sap.ui.define([], function () {
         tipoGeneracionIcon: function (sTipo) {
             switch (sTipo) {
                 case "A": return "sap-icon://person-placeholder";
-                case "B": return "sap-icon://repeat";
+                case "B": return "sap-icon://process";
                 default:  return "sap-icon://question-mark";
             }
         },
 
-        tipoGeneracionColor: function (sTipo) {
+        tipoGeneracionState: function (sTipo) {
             switch (sTipo) {
-                case "A": return "#0070F2";
-                case "B": return "#107E3E";
-                default:  return "#8696A9";
+                case "A": return "Information";
+                case "B": return "Success";
+                default:  return "None";
             }
         },
 

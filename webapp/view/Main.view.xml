@@ -150,14 +150,10 @@
                                     <Text text="{path: 'FechaUltConf', formatter: '.formatter.textoFechaResp'}"/>
 
                                     <!-- TipoGeneracion -->
-                                    <HBox alignItems="Center">
-                                        <core:Icon
-                                            src="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionIcon'}"
-                                            color="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionColor'}"
-                                            size="1rem"
-                                            class="sapUiTinyMarginEnd"/>
-                                        <Text text="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionText'}"/>
-                                    </HBox>
+                                    <ObjectStatus
+                                        text="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionText'}"
+                                        icon="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionIcon'}"
+                                        state="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionState'}"/>
 
                                     <!-- Creador -->
                                     <Text text="{CreadoPor}" class="claveValorNegrita"/>
