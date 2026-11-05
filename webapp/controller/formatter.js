@@ -42,8 +42,24 @@ sap.ui.define([], function () {
         tipoGeneracionText: function (sTipo) {
             switch (sTipo) {
                 case "A": return "Manual";
-                case "B": return "Batch";
+                case "B": return "Automático";
                 default:  return sTipo || "";
+            }
+        },
+
+        tipoGeneracionIcon: function (sTipo) {
+            switch (sTipo) {
+                case "A": return "sap-icon://person-placeholder";
+                case "B": return "sap-icon://repeat";
+                default:  return "sap-icon://question-mark";
+            }
+        },
+
+        tipoGeneracionColor: function (sTipo) {
+            switch (sTipo) {
+                case "A": return "#0070F2";
+                case "B": return "#107E3E";
+                default:  return "#8696A9";
             }
         },
 

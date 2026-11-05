@@ -97,7 +97,7 @@
                             <Column id="colClave" width="22rem">
                                 <Text text="{i18n>colClave}"/>
                             </Column>
-                            <Column id="colTipoMensaje" width="14rem" minScreenWidth="Tablet" demandPopin="true">
+                            <Column id="colTipoMensaje" width="14rem" minScreenWidth="Tablet" demandPopin="true" visible="false">
                                 <Text text="{i18n>colTipoMensaje}"/>
                             </Column>
                             <Column id="colFechaEnvio" width="11rem" minScreenWidth="Tablet" demandPopin="true">
@@ -109,8 +109,11 @@
                             <Column id="colFechaUltConf" width="11rem" minScreenWidth="Desktop" demandPopin="true">
                                 <Text text="{i18n>colFechaUltConf}"/>
                             </Column>
-                            <Column id="colOrigen" width="12rem" minScreenWidth="Desktop" demandPopin="true">
-                                <Text text="{i18n>colOrigen}"/>
+                            <Column id="colTipoGen" width="11rem" minScreenWidth="Desktop" demandPopin="true">
+                                <Text text="{i18n>colTipoGeneracion}"/>
+                            </Column>
+                            <Column id="colCreador" width="10rem" minScreenWidth="Desktop" demandPopin="true">
+                                <Text text="{i18n>colCreador}"/>
                             </Column>
                         </columns>
 
@@ -146,11 +149,18 @@
                                     <!-- FechaUltConf -->
                                     <Text text="{path: 'FechaUltConf', formatter: '.formatter.textoFechaResp'}"/>
 
-                                    <!-- Origen -->
-                                    <VBox justifyContent="Center">
-                                        <Text text="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionText'}" class="claveText claveValorNegrita"/>
-                                        <Text text="{CreadoPor}" class="claveSubText"/>
-                                    </VBox>
+                                    <!-- TipoGeneracion -->
+                                    <HBox alignItems="Center">
+                                        <core:Icon
+                                            src="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionIcon'}"
+                                            color="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionColor'}"
+                                            size="1rem"
+                                            class="sapUiTinyMarginEnd"/>
+                                        <Text text="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionText'}"/>
+                                    </HBox>
+
+                                    <!-- Creador -->
+                                    <Text text="{CreadoPor}" class="claveValorNegrita"/>
                                 </cells>
                             </ColumnListItem>
                         </items>
