@@ -25,7 +25,15 @@
                                     <Text text="{i18n>lblClave}:" class="claveEtiqueta sapUiTinyMarginEnd"/>
                                     <Title id="objectTitle" text="{Clave}" level="H2"/>
                                 </HBox>
-                                <Label text="{TipoMensaje}" class="sapUiTinyMarginTop"/>
+                                <HBox alignItems="Center" class="sapUiTinyMarginTop">
+                                    <ObjectStatus
+                                        text="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionText'}"
+                                        icon="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionIcon'}"
+                                        state="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionState'}"
+                                        class="sapUiTinyMarginEnd"/>
+                                    <Text text=":" class="sapUiTinyMarginEnd"/>
+                                    <Text text="{CreadoPor}" class="claveValorNegrita"/>
+                                </HBox>
                             </VBox>
                         </uxap:heading>
                         <uxap:snappedHeading>
@@ -34,7 +42,15 @@
                                     <Text text="{i18n>lblClave}:" class="claveEtiqueta sapUiTinyMarginEnd"/>
                                     <Title text="{Clave}" level="H3"/>
                                 </HBox>
-                                <Label text="{TipoMensaje}"/>
+                                <HBox alignItems="Center">
+                                    <ObjectStatus
+                                        text="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionText'}"
+                                        icon="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionIcon'}"
+                                        state="{path: 'TipoGeneracion', formatter: '.formatter.tipoGeneracionState'}"
+                                        class="sapUiTinyMarginEnd"/>
+                                    <Text text=":" class="sapUiTinyMarginEnd"/>
+                                    <Text text="{CreadoPor}" class="claveValorNegrita"/>
+                                </HBox>
                             </VBox>
                         </uxap:snappedHeading>
                     </uxap:ObjectPageDynamicHeaderTitle>
